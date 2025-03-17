@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Review and sign document(s) | Docusign</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <script type="text/javascript">
+        (function (global) { global.DS_PAGE_LOADED_TIME = +(new Date()); })(this);
+    </script>
+
+    
+    <link rel="icon" type="image/png" href="https://docucdn-a.akamaihd.net/olive/images/2.63.0/global-assets/ds-icons-favicon-default-16x16.png" media="(prefers-color-scheme: light)" sizes="16x16" /><link rel="icon" type="image/png" href="https://docucdn-a.akamaihd.net/olive/images/2.63.0/global-assets/ds-icons-favicon-dark-16x16.png" media="(prefers-color-scheme: dark)" sizes="16x16" /><link rel="icon" type="image/png" href="https://docucdn-a.akamaihd.net/olive/images/2.63.0/global-assets/ds-icons-favicon-default-24x24.png" media="(prefers-color-scheme: light)" sizes="24x24" /><link rel="icon" type="image/png" href="https://docucdn-a.akamaihd.net/olive/images/2.63.0/global-assets/ds-icons-favicon-dark-24x24.png" media="(prefers-color-scheme: dark)" sizes="24x24" /><link rel="icon" type="image/png" href="https://docucdn-a.akamaihd.net/olive/images/2.63.0/global-assets/ds-icons-favicon-default-64x64.png" media="(prefers-color-scheme: light)" sizes="64x64" /><link rel="icon" type="image/png" href="https://docucdn-a.akamaihd.net/olive/images/2.63.0/global-assets/ds-icons-favicon-dark-64x64.png" media="(prefers-color-scheme: dark)" sizes="64x64" />
+
+    <script>
+
+    (function () {
+        
+        window.cdnURL = 'https://docucdn-a.akamaihd.net/production/1ds/widgets/@ds/signing/25.3.41-7/';
+        window.primaryCdnUrl = window.cdnURL;
+        window.cdnUrlsAttempted = [window.cdnURL];
+        window.cdnDidFallback = false;
+        
+        window.disableCDNFallbackDueToOverride = false;
+            
+                window.fallbackCdnUrl = 'https://apps.docusign.com/cdn/production/1ds/widgets/@ds/signing/25.3.41-7/';
+            
+        // Set a new CDN Url
+        window.setCdnUrl = function(url) {
+            window.cdnUrlsAttempted && window.cdnUrlsAttempted.push(url);
+            window.cdnURL = url;
+            window.cdnDidFallback = true;
+        }
+
+        // Set the next available cdn URL, return false if there are no more options
+        window.setNextCdnUrl = function() {
+            if (window.cdnURL === window.primaryCdnUrl && window.fallbackCdnUrl)
+            {
+                window.setCdnUrl(window.fallbackCdnUrl);
+                return true;
+            }
+            else
+            {
+                window.setCdnUrl('/Signing/SigningApp/latest/');
+                return false;
+            }
+        }
+
+        
+        window.getCDNMonitoringProps = function() {
+            return {
+                CdnUrl: window.cdnURL,
+                PrimaryCdnUrl: window.primaryCdnUrl,
+                FallbackCdnUrl: window.fallbackCdnUrl,
+                CdnDidFallback: window.cdnDidFallback,
+                CdnUrlsAttempted: JSON.stringify(window.cdnUrlsAttempted), // monitoringProperties cannot be objects/arrays
+                DisableCDNFallbackDueToOverride: window.disableCDNFallbackDueToOverride
+            }
+        }
+
+        function createScript(src, onError, onLoad) {
+            var scriptEl = document.createElement("script");
+            scriptEl.src = src;
+            scriptEl.onerror=onError;
+            scriptEl.onload=onLoad;
+            scriptEl.crossorigin = true;
+
+            document.head.appendChild(scriptEl);
+        }
+
+        function createStylesheet(href, onError, onLoad) {
+            var styleEl = document.createElement("link");
+            styleEl.href = href;
+            styleEl.rel = 'stylesheet';
+            styleEl.type = "text/css";
+            styleEl.onerror=onError;
+            styleEl.onload=onLoad;
+            styleEl.crossorigin = true;
+
+            document.head.appendChild(styleEl);
+        }
+
+        window.tryFallbackToNextCDN = function tryFallbackToNextCDN(bundleName, onFail, onLoad, previousCDNUrl) {
+            if (window.disableCDNFallbackDueToOverride) {
+                onFail();
+                return;
+            }
+            // if previousCDN URL doesn't match current cdnURL, try to load again without setting setNextCdnUrl to the next value
+            var hasAnotherFallback = window.cdnUrl !== previousCDNUrl ? true : window.setNextCdnUrl();
+            createScript(window.cdnURL + bundleName, hasAnotherFallback ? tryFallbackToNextCDN.bind(this, bundleName, onFail, onLoad, window.cdnUrl) : onFail, onLoad);
+        }
+        window.tryFallbackToNextCDNStylesheet = function tryFallbackToNextCDNStylesheet(stylesheetName, onFail, onLoad, previousCDNUrl) {
+            if (window.disableCDNFallbackDueToOverride) {
+                onFail();
+                return;
+            }
+            // if previousCDN URL doesn't match current cdnURL, try to load again without setting setNextCdnUrl to the next value
+            var hasAnotherFallback = window.cdnUrl !== previousCDNUrl ? true : window.setNextCdnUrl();
+            createStylesheet(window.cdnURL + stylesheetName, hasAnotherFallback ? tryFallbackToNextCDNStylesheet.bind(this, stylesheetName, onFail, onLoad, window.cdnUrl) : onFail, onLoad);
+        }
+    })();
+</script>
+
+
+
+            <script>
+            window.DSSigning = { init: function (initOpts) { this._initOpts = initOpts } };
+            window.DSSigningReady = true;
+        </script>
+            <script>
+            try {
+                var dappToken = localStorage.getItem('DisplayApplianceToken');
+                if (dappToken)
+                {
+                    window.DisplayApplianceAuthToken = dappToken;
+                }
+            } catch (e) {
+            }
+        </script>
+            
+            <script type="text/javascript">
+            
+            (function (e, t) { if (!t["__SV"]) { var n, r, i, s, o, u = "mixpanel"; window[u] = t; n = e.createElement("script"); n.type = "text/javascript"; n.async = true; n.src = (e.location.protocol === "https:" ? "https:" : "http:") + "//docucdn-a.akamaihd.net/v/static/mixpanel-2-2-1b.js"; r = e.getElementsByTagName("script")[0]; r.parentNode.insertBefore(n, r); t["_i"] = []; t["init"] = function (e, n, r) { function a(e, t) { var n = t.split("."); if (n.length == 2) { e = e[n[0]]; t = n[1] } e[t] = function () { e.push([t].concat(Array.prototype.slice.call(arguments, 0))) } } var i = t; if (typeof r !== "undefined") { i = t[r] = [] } else { r = u } i["people"] = i["people"] || []; i["toString"] = function (e) { var t = u; if (r !== u) { t += "." + r } if (!e) { t += " (stub)" } return t }; i["people"]["toString"] = function () { return i.toString(1) + ".people (stub)" }; s = "disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" "); for (o = 0; o < s.length; o++) { a(i, s[o]) } t["_i"].push([e, n, r]) }; t["__SV"] = 1.2 } })(document, window["mixpanel"] || []);
+            try {
+                mixpanel.init('304ccbde24d3b15ffe2d5de30c10dab2', { 'disable_cookie': true });
+            } catch(e) {}
+            </script>
+        
+            
+            <script type="text/javascript">
+            try {
+                mixpanel.init('6244bb9e31df6d8dcf8c4135defe6460', { 'disable_cookie': true }, 'collaboration');
+            } catch (e) {
+                window.mixpanelCollaborationProjectException = e;
+            }
+            </script>
+        
+            <style type="text/css">
+            body {
+                padding-left: env(safe-area-inset-left);
+                padding-right: env(safe-area-inset-right);
+                padding-top: env(safe-area-inset-top);
+                padding-bottom: env(safe-area-inset-bottom);
+            }
+        </style>
+</head>
+<body>
+        <div id="loading-logo" style="font-family:Arial;font-size:12px;position:absolute;top:0;left:0;right:0;bottom:0;background:#FFF;z-index:999999"><img style="position:absolute;top:50%;height:33px;width:120px;top:40%;left:50%;margin-left:-63px;margin-top:-60px;" src="https://docucdn-a.akamaihd.net/olive/images/2.63.0/global-assets/ds-logo-default.svg"><div style="position:absolute;left:0;right:0;text-align:center;top:40%;margin-top:9px;height:40px;line-height:16px;color:#61a4f6;"></div><div style="position:absolute;left:50%;margin-left:-107px;height:4px;width:214px;top:40%;margin-top:-10px;background:#eaeaea;"><div id="preparing-experience" style="position:absolute;left:0;top:0;bottom:0;width:0%;background:#61a4f6;-webkit-transition:width 8s cubic-bezier(.2,.84,.38,.87);-moz-transition:width 8s cubic-bezier(.2,.84,.38,.87);-o-transition:width 8s cubic-bezier(.2,.84,.38,.87);-ms-transition:width 8s cubic-bezier(.2,.84,.38,.87);transition:width 8s cubic-bezier(.2,.84,.38,.87);"></div></div></div>
+    <script type="text/javascript">
+            
+                    (function () {
+                        
+                        function sendBeacon(url, data) {
+                            
+                                var event = this.event && this.event.type;
+                            var sync = event === 'unload' || event === 'beforeunload';
+                            //var xhr = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+                            var xhr = new XMLHttpRequest()
+                            xhr.open('POST', url, !sync);
+                            xhr.withCredentials = true;
+                            xhr.setRequestHeader('Accept', '*/*');
+                            if (typeof data === 'string') {
+                                xhr.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
+                                xhr.responseType = 'text/plain';
+                            } else if (data instanceof Blob && data.type) {
+                                xhr.setRequestHeader('Content-Type', data.type);
+                            }
+                            try {
+                                xhr.send(data);
+                            } catch (error) {
+                                return false;
+                            }
+                            return true;
+                        }
+
+                        if (!window.navigator.sendBeacon) {
+                            window.navigator.sendBeacon = sendBeacon;
+                        }
+                    })();
+            
+
+        (function () {
+            window.suggestedLogicalSession = '79917343-efd8-44cd-8c2f-306bd15636cf';
+            var minAllowableIEVersion = 12;
+            var isUnsupportedBrowser = false;
+            var compatibility = false;
+            var browserVersion;
+            var trueVersion;
+            var unsupportedReason = "Unknown";
+            if (window.navigator != null && document.querySelectorAll != null) {
+                var uaString = window.navigator.userAgent;
+                var msieVersion = uaString.match(/MSIE ([1]?[0-9])\.0/i);
+                if (msieVersion && msieVersion[1]) {
+                    browserVersion = msieVersion[1];
+                } else if (uaString.indexOf("Trident") !== -1 && uaString.indexOf("rv:11") !== -1) {
+                    browserVersion = 11;
+                }
+                var trident = navigator.userAgent.match(/Trident\/(\d+)/);
+                if (trident) trueVersion = parseInt(trident[1], 10) + 4;
+
+                compatibility = (trueVersion && browserVersion && trueVersion != browserVersion);
+                isUnsupportedBrowser = browserVersion && browserVersion < minAllowableIEVersion;
+                if (isUnsupportedBrowser)
+                    unsupportedReason = "old browser version"
+            } else {
+                isUnsupportedBrowser = true;
+                if (true) {
+                    if (window.navigator == null && document.querySelectorAll != null) {
+                        unsupportedReason = 'window.navigator = null';
+                    } else if (window.navigator != null && document.querySelectorAll == null) {
+                        unsupportedReason = 'document.querySelectorAll = null';
+                    } else {
+                        unsupportedReason = 'window.navigator = null and document.querySelectorAll = null';
+                    }
+                } else {
+                    unsupportedReason = 'window.navigator = null [' + (window.navigator == null) + '], document.querySelectorAll = null [' + (document.querySelectorAll == null) + ']';
+                }
+            }
+
+            if (isUnsupportedBrowser) {
+                var redirectPath;
+                if (true) {
+                    if (window.navigator != null && document.querySelectorAll != null) {
+                        redirectPath = '/signing/error/unsupportedbrowser?ti=e44f91a90eaa4b48bdd9fa3be4d8f564&unsupportedReason=OldBrowser';
+                    } else if (window.navigator == null && document.querySelectorAll != null) {
+                        unsupportedReason = 'window.navigator = null';
+                        redirectPath = '/signing/error/unsupportedbrowser?ti=e44f91a90eaa4b48bdd9fa3be4d8f564&unsupportedReason=NavigatorNull';
+                    } else if (window.navigator != null && document.querySelectorAll == null) {
+                        redirectPath = '/signing/error/unsupportedbrowser?ti=e44f91a90eaa4b48bdd9fa3be4d8f564&unsupportedReason=QuerySelectorAllNull';
+                    } else {
+                        redirectPath = '/signing/error/unsupportedbrowser?ti=e44f91a90eaa4b48bdd9fa3be4d8f564&unsupportedReason=NavigatorQuerySelectorNull';
+                    }
+                } else {
+                    redirectPath = '/signing/error/unsupportedbrowser?ti=e44f91a90eaa4b48bdd9fa3be4d8f564';
+                }
+                window.navigator.sendBeacon(
+                    'monitoring?ti=e44f91a90eaa4b48bdd9fa3be4d8f564',
+                    JSON.stringify({
+                        EventSource: 'AppEvent',
+                        MonitoringProperties: Object.assign({
+                            Description: 'Unsupported IE Browser',
+                            Reason: unsupportedReason,
+                            TrueVersion: (trueVersion == null) ? "Unknown" : trueVersion,
+                            ClientUserAgent: (window.navigator == null)? "Window.Navigator not available": window.navigator.userAgent,
+                            ClientIEVersion: browserVersion,
+                            MinimumAllowableIEVersion: minAllowableIEVersion,
+                            CompatibilityMode: compatibility,
+                            RedirectPath: redirectPath,
+                        }, window.getCDNMonitoringProps ? window.getCDNMonitoringProps() : {})
+                    })
+                );
+                window.location = redirectPath;
+            }
+
+            
+        })();
+
+
+        (function () {
+            
+        })();
+
+
+        (function () {
+            
+            window.onload = function () {
+                var t = document.getElementById('preparing-experience');
+                if (t && t.style) {
+                    t.style.width = '90%';
+                }
+            };
+        })();
+    </script>
+
+    
+
+
+
+
+
+
+
+
+    
+        <script>
+            (function () {
+                window.signingConfig = {"SigningAppDisabledFlags":"","EnableKazmonTelemetryRecorder":true,"NotaryFetchSettings":{"LiveoakTokenRequestTimeoutSeconds":30,"EnableRemoteNotaryAuth":true,"IsThirdPartyNotary":false,"LiveoakTokenExchangeOrigin":""},"WebFormsSettings":null}
+            })();
+        </script>
+    
+
+<input name="__RequestVerificationToken" type="hidden" value="AbYI7R6XqNxkXnXnRCSghQkAAAAA0" />
+<input name="__SigningAccessToken" type="hidden" autocomplete="off">
+
+        
+            <script>
+                window.DSSigningShowRetry = function (description, errorMessage) {
+                    document.body.innerHTML = [
+                        '<link rel="stylesheet" type="text/css" href="//docucdn-a.akamaihd.net/olive/latest/css/olive.min.css" />',
+                        '<div class="emptyState">',
+                        '<i class="icon icon-alert emptyState_icon text-alert"></i>',
+                        '<h1 class="p-top-x-small" data-qa="app-load-title">Unable to start signing process</h1>',
+                        '<p class="emptyState_text">Please try again.</p>',
+                        '<a href="javascript:window.location.reload(true)" class="btn btn-secondary" data-qa="app-load-retry">Retry</a>',
+                        '</div>'
+                    ].join('');
+                    try {
+                        window.navigator.sendBeacon(
+                            'monitoring?ti=e44f91a90eaa4b48bdd9fa3be4d8f564',
+                            JSON.stringify({
+                                EventSource: 'AppEvent',
+                                MonitoringProperties: Object.assign({
+                                    Description: 'ViewSigningPageError' + (description ? '-' + description : ''),
+                                    Duration: +(new Date()) - window.DS_PAGE_LOADED_TIME,
+                                    Reason: errorMessage
+                                }, window.getCDNMonitoringProps ? window.getCDNMonitoringProps() : {})
+                            })
+                        );
+                    } catch (ex) { }
+                }
+            </script>
+
+            
+            <script>window.experimentInfo = { experimentName: 'iframeless', variationName: 'mobile' };</script>
+
+            
+            <script>
+                (function () {
+                    var retryTime = 900*1000
+                    var loadingTimeout = setTimeout(onLoadTimeout, retryTime);
+                    function onLoadTimeout() {
+                        var appBundleLoaded = window.DSSigning && window.DSSigning.isReady;
+                        var envelopeJsonLoaded = appBundleLoaded && window.DSSigning.isReady();
+                        // Handle app bundle load failure
+                        if (!appBundleLoaded) {
+                            onBundleLoadFailed();
+                        }
+                        // Handle envelope json load failure
+                        else if (!envelopeJsonLoaded) {
+                            onEnvelopeLoadFailed();
+                        }
+                    }
+                    function onBundleLoadFailed() {
+                        clearTimeout(loadingTimeout);
+                        window.DSSigningShowRetry("AppBundleLoadFailed")
+                    }
+                    function onEnvelopeLoadFailed() {
+                        clearTimeout(loadingTimeout);
+                        window.DSSigningShowRetry('EnvelopeJsonFailedToLoad', "Envelope JSON Load Timed out after 900 seconds")
+                    }
+                    window.throwBundleLoadFailed = onBundleLoadFailed;
+                })();
+            </script>
+            <script defer fetchpriority="high" crossorigin src="https://docucdn-a.akamaihd.net/production/1ds/widgets/@ds/signing/25.3.41-7/signing_iframeless_mobile.js?cs=516634927" onerror="window.tryFallbackToNextCDN('signing_iframeless_mobile.js?cs=516634927', window.throwBundleLoadFailed, undefined, 'https://docucdn-a.akamaihd.net/production/1ds/widgets/@ds/signing/25.3.41-7/')"></script>
+        
+
+
+    
+        <script>
+            function sendExitLogEvent() {
+                window.navigator.sendBeacon(
+                    'monitoring?ti=e44f91a90eaa4b48bdd9fa3be4d8f564',
+                    JSON.stringify({
+                        EventSource: 'AppEvent',
+                        MonitoringProperties: {
+                            Description: 'SigningAppBrowserExit',
+                            SessionDuration: +(new Date()) - window.DS_PAGE_LOADED_TIME,
+                            ClientUserAgent: window.navigator.userAgent
+                        }
+                    })
+                );
+            };
+            
+                function getExitEvent() {
+                    switch (true) {
+                        case /MSIE|Trident.*rv:/.test(navigator.userAgent):
+                            return 'beforeunload';
+                        case /iPad|iPhone|iPod/i.test(navigator.userAgent):
+                            return 'pagehide';
+                        default:
+                            return 'unload';
+                    }
+                };
+            
+                (function () {
+                    var exitEvent = getExitEvent();
+                    switch (exitEvent) {
+                        case "beforeunload":
+                            window.onbeforeunload = sendExitLogEvent;
+                            break;
+                        default:
+                            window.addEventListener(exitEvent, sendExitLogEvent, false);
+                            break;
+                    }
+                })();
+        </script>
+    
+
+</body>
+</html>
