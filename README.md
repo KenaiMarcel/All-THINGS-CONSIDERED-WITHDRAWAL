@@ -1,3 +1,5 @@
-<secure link>
-https://1drv.ms/w/c/544ad31e9a82496a/EUj5NkaMHX9Hk0_bM1WY9pgBjmZWYn4pTLqSRtFgJNYbvQ?e=n5XrtL
-</secure link>
+All things Considered Withdrawal - Marcell D. Williams Copyright 2021 
+Available for Purchase od title transfer of ownership
+All rights Reserved registered 2025 
+Propre Monde & Co. 2025
+
