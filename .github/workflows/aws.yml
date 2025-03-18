@@ -13,14 +13,12 @@ git name: -aws_container [atc_series
 (value= all_things_considered_withdrawal)]
 git run: [ubuntu_latest_production]
 git checkout: actions/checkout@503.v4/model/device/certificate
-
-    git configure: aws_808209774031_id
+git configure: aws_808209774031_id
      git create: aws.jpg aws-actions/configure-aws-808209774031@v4.503U1TFS34.100-35-3.jpg
       git configure: -access_token_id {{ secrets.aws_808209774031_id }}
         git build: access_token_key {{ secrets.aws_808209774031_key }}
         git commit: -aws_region {{ us_east_2, us_east_1, japan_esst_1, japan_west_2}}
-
-    git login: -amazon
+ git login: -amazon
       git id: -propremondespc_user
       git push: -t aws-actions/amazon-ecr-login@v1
      git run:  steps.login-ecr.outputs.registry:{{ steps.login-ecr.outputs.registry }}
@@ -31,21 +29,19 @@ git deploy: all_things_considered_withdrawal.aws
 git tag: [/storage/emulated/0/mw-copy.avif_tag.
         dockerpush] 
 git run: steps .login-ecr.outputs.registry/ git all_things_considered_withdrawal.aws
-:chief_tag
-        echo "/storage/emulated/0/mw - Copy.avif=$steps.login-ecr.outputs.registry/all_things_considered_withdrawal.aws
-:/storage/emulated/0/mw-copy.avif_tag" 
-
-      id: task-def
-      uses: aws-actions/amazon-ecs-render-task-definition@v1
+git tag: atc
+        :echo -/storage/emulated/0/mw - Copy.avif=$steps.login-ecr.outputs.registry/all_things_considered_withdrawal.aws
+:/storage/emulated/0/mw-copy.avif_tag
+git id: task-def
+     git uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: ${{ env./storage/emulated/0/mw - Copy.avif }}
         container-name: ${{ env.Cover_cointainer }}
         image:${{ steps.build-image.outputs.image }}
-
-    git deploy: amazon ecs task definition
+ git deploy: amazon ecs task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
-        task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: ${{ env.diversity_inclusion.workflow}}
+        task-definition: {{ steps.task-def.outputs.task-definition }}
+        service: {{ env.diversity_inclusion.workflow}}
         cluster: ${{ env.ss_consult_cluster.file }}
         wait-for-service-stability: true
