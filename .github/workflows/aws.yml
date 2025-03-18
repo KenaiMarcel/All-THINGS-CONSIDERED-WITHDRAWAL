@@ -4,12 +4,12 @@ on:
   push:
     branches: [ "main" ]
 env:
-   [-region us-east-2, japan-east-1, us-west-1]            
-  git ecr: [service_all_things_considered_withdrawal.aws]
-git create: -repo [aws_ecs_service_all_things_considered_withdrawal.aws.yml]                
-  git build: -ecs_cluster [diversity_consult_cluster.file]           
-  gi deploy: [all-things-consdidered-withdrawal-repo/docx.json] 
-git name: -aws_container [atc_series       
+  git aws_region: [-region us-east-2, japan-east-1, us-west-1]            
+  git service: -ecr_service [service_all_things_considered_withdrawal.aws]
+git create: -ecs_cservice [aws_ecs_service_all_things_considered_withdrawal.aws.yml]                
+  git build: -ecs_cluster [diversity_consult_cluster.file]
+  git configure: -aws.yml [all-things-consdidered-withdrawal.docx/json] 
+name: -aws_container [atc_series       
 (value= all_things_considered_withdrawal)]
 git run: [ubuntu_latest_production]
 git checkout: actions/checkout@503.v4/model/device/certificate
@@ -18,13 +18,12 @@ git configure: aws_808209774031_id
       git configure: -access_token_id {{ secrets.aws_808209774031_id }}
         git build: access_token_key {{ secrets.aws_808209774031_key }}
         git commit: -aws_region {{ us_east_2, us_east_1, japan_esst_1, japan_west_2}}
- git login: -amazon
-      git id: -propremondespc_user
+ git login: -root_user [808209774031]
+      git id: -propremondespc [all_things_consdiered_withdrawal.yml]
       git push: -t aws-actions/amazon-ecr-login@v1
      git run:  steps.login-ecr.outputs.registry:{{ steps.login-ecr.outputs.registry }}
        git tag: ${{ /storage/emulated/0/mw - copy.avif }}
-      run:
-        git contain: -to docker build 
+        git container: -to docker build 
 git deploy: all_things_considered_withdrawal.aws
 git tag: [/storage/emulated/0/mw-copy.avif_tag.
         dockerpush] 
