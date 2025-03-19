@@ -5,14 +5,12 @@ on:
     branches: [ "main" ]
 
 env:
-  AWS_REGION: -region us-east-2, japan-east-1, us-west-1              
-  ECR_REPOSITORY: -all_things_considered_withdrawal          
-  ECS_SERVICE: -diversity_inclusion_workflow              
-  ECS_CLUSTER: -ss_consult_cluster             
-  ECS_TASK_DEFINITION: -.aws/deploy-all-things-consdidered-withdrawal-repo/docx.json 
-                                         
-  CONTAINER_NAME: -Series_container          
-                                           (branch_name_atc)
+  AWS_REGION: us-east-2
+  ECR_REPOSITORY: all_things_considered_withdrawal
+  ECS_SERVICE: diversity_inclusion_workflow
+  ECS_CLUSTER: ss_consult_cluster
+  ECS_TASK_DEFINITION: .aws/deploy-all-things-considered-withdrawal-repo/docx.json
+  CONTAINER_NAME: Series_container
 
 permissions:
   contents: read
@@ -41,14 +39,19 @@ jobs:
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
       env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REGISTRY: 
+      ${{ steps.login-ecr.outputs.registry }}
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        # Build a docker container and
-        # push it to ECR so that it can
-        # be deployed to ECS.
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+         docker build:
+            
+             $ECR_REGISTRY
+      docker tag:
+          
+ $ECR_CLUSTER
+          $IMAGE_TAG
+        docker PUSH: -repo
+ $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
     - name: Fill in the new image ID in the Amazon ECS task definition
@@ -57,7 +60,7 @@ jobs:
       with:
         task-definition: ${{ env.ECS_TASK_DEFINITION }}
         container-name: ${{ env.CONTAINER_NAME }}
-        image: ${{ steps.build-image.outputs.image }}
+        image: q${{ steps.build-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
@@ -66,6 +69,11 @@ jobs:
         service: ${{ env.ECS_SERVICE }}
         cluster: ${{ env.ECS_CLUSTER }}
         wait-for-service-stability: true
+
+    - name: Install kubectl
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y kubectl
 
     - name: Request Approval
       uses: hmarr/auto-approve-action@v2.0.0
