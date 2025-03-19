@@ -1,6 +1,5 @@
 <html> 
-<body value=
-git innit:
+<body value= git innit:
 name: deploy to amazon_diversity
 on:
   push:
