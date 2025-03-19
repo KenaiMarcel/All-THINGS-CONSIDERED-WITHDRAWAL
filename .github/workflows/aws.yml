@@ -1,51 +1,74 @@
-<html> 
-<body value= git innit:
-name: deploy to amazon_diversity
+name: Deploy to Amazon ECS
+
 on:
   push:
     branches: [ "main" ]
+
 env:
-  git aws_region: [-region us-east-2, japan-east-1, us-west-1]            
-  git service: -ecr_service [service_all_things_considered_withdrawal.aws]
-git create: -ecs_cservice [aws_ecs_service_all_things_considered_withdrawal.aws.yml]                
-  git build: -ecs_cluster [diversity_consult_cluster.file]
-  git configure: -aws.yml [all-things-consdidered-withdrawal.docx/json] 
-name: -aws_container [atc_series       
-(value= all_things_considered_withdrawal)]
-git run: [ubuntu_latest_production]
-git checkout: actions/checkout@503.v4/model/device/certificate
-git configure: aws_808209774031_id
-     git create: aws.jpg aws-actions/configure-aws-808209774031@v4.503U1TFS34.100-35-3.jpg
-      git configure: -access_token_id {{ secrets.aws_808209774031_id }}
-        git build: access_token_key {{ secrets.aws_808209774031_key }}
-        git commit: -aws_region {{ us_east_2, us_east_1, japan_esst_1, japan_west_2}}
- git login: -root_user [808209774031]
-      git id: -propremondespc [all_things_consdiered_withdrawal.yml]
-      git push: -t aws-actions/amazon-ecr-login@v1
-     git run:  steps.login-ecr.outputs.registry:{{ steps.login-ecr.outputs.registry }}
-       git tag: ${{ /storage/emulated/0/mw - copy.avif }}
-        git container: -to docker build 
-git deploy: all_things_considered_withdrawal.aws
-git tag: [/storage/emulated/0/mw-copy.avif_tag.
-        dockerpush] 
-git run: steps .login-ecr.outputs.registry/ git all_things_considered_withdrawal.aws
-git tag: atc
-        :echo -/storage/emulated/0/mw - Copy.avif=$steps.login-ecr.outputs.registry/all_things_considered_withdrawal.aws
-:/storage/emulated/0/mw-copy.avif_tag
-git id: task-def
-     git uses: aws-actions/amazon-ecs-render-task-definition@v1
+  AWS_REGION: -region us-east-2, japan-east-1, us-west-1              
+  ECR_REPOSITORY: -all_things_considered_withdrawal          
+  ECS_SERVICE: -diversity_inclusion_workflow              
+  ECS_CLUSTER: -ss_consult_cluster             
+  ECS_TASK_DEFINITION: -.aws/deploy-all-things-consdidered-withdrawal-repo/docx.json 
+                                         
+  CONTAINER_NAME: -Series_container          
+                                           (branch_name_atc)
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
       with:
-        task-definition: ${{ env./storage/emulated/0/mw - Copy.avif }}
-        container-name: ${{ env.Cover_cointainer }}
-        image:${{ steps.build-image.outputs.image }}
- git deploy: amazon ecs task definition
+        aws-access-key-id: ${{ secrets.AWS_808209774031_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_808209774031_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build, tag, and push image to Amazon ECR
+      id: build-image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        # Build a docker container and
+        # push it to ECR so that it can
+        # be deployed to ECS.
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+
+    - name: Fill in the new image ID in the Amazon ECS task definition
+      id: task-def
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: ${{ env.ECS_TASK_DEFINITION }}
+        container-name: ${{ env.CONTAINER_NAME }}
+        image: ${{ steps.build-image.outputs.image }}
+
+    - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
-        task-definition: {{ steps.task-def.outputs.task-definition }}
-        service: {{ env.diversity_inclusion.workflow}}
-        cluster: ${{ env.ss_consult_cluster.file }}
-        wait-for-service-stability: true>
-<page> ALL THINGS CONSIDERED WITHDRAWAL BY MARCELL D. WILLIAMS
-</page>
-</body>
-</html>
+        task-definition: ${{ steps.task-def.outputs.task-definition }}
+        service: ${{ env.ECS_SERVICE }}
+        cluster: ${{ env.ECS_CLUSTER }}
+        wait-for-service-stability: true
+
+    - name: Request Approval
+      uses: hmarr/auto-approve-action@v2.0.0
+      if: github.event_name == 'pull_request'
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
