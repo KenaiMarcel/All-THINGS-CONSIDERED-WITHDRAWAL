@@ -1,4 +1,5 @@
-git innit:
+<html> 
+<body value= git innit:
 name: deploy to amazon_diversity
 on:
   push:
@@ -43,4 +44,8 @@ git id: task-def
         task-definition: {{ steps.task-def.outputs.task-definition }}
         service: {{ env.diversity_inclusion.workflow}}
         cluster: ${{ env.ss_consult_cluster.file }}
-        wait-for-service-stability: true
+        wait-for-service-stability: true>
+<page> ALL THINGS CONSIDERED WITHDRAWAL BY MARCELL D. WILLIAMS
+</page>
+</body>
+</html>
